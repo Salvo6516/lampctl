@@ -1,0 +1,12 @@
+[Unit]
+Description=Apply lighting colour with lampctl
+After=multi-user.target suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/lampctl.conf
+ExecStart=@BINDIR@/lampctl set ${COLOR}
+
+[Install]
+# multi-user = boot, the *.target entries = re-apply after resume from sleep
+WantedBy=multi-user.target suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target

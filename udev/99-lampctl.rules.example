@@ -1,0 +1,12 @@
+# Lets the logged-in user talk to the LampArray interface without sudo.
+#
+# 1. Find the USB interface number of YOUR lighting node (hidraw1 on the LOQ IRX10, to be verified):
+#      udevadm info -a /dev/hidrawN | grep -E 'bInterfaceNumber|idVendor|idProduct'
+#    (use the bInterfaceNumber of the nearest parent that lists it)
+# 2. Fill in XX below and copy to /etc/udev/rules.d/99-lampctl.rules
+# 3. sudo udevadm control --reload && sudo udevadm trigger
+#
+# SECURITY: do NOT drop the bInterfaceNumber match. The other hidraw node of this
+# chip is the regular keyboard, and uaccess on it would let any process of your
+# session read raw keystrokes.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="048d", ATTRS{idProduct}=="c693", ATTRS{bInterfaceNumber}=="XX", TAG+="uaccess"

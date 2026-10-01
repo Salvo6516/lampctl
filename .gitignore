@@ -1,0 +1,3 @@
+lampctl
+lampctl.service
+*.o
