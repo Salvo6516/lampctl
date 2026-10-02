@@ -97,4 +97,4 @@ used only to describe compatibility.
 
 ## Licence
 
-MIT, see [LICENSE](LICENSE). Replace the placeholder name in it with your own.
+MIT, see [LICENSE](LICENSE).
